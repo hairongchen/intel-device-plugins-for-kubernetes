@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package sgx contains SGX specific reconciliation logic.
+// Package tdx contains TDX specific reconciliation logic.
 package tdx
 
 import (
@@ -38,9 +38,9 @@ const ownerKey = ".metadata.controller.tdx"
 
 var defaultNodeSelector = deployments.TDXPluginDaemonSet().Spec.Template.Spec.NodeSelector
 
-// +kubebuilder:rbac:groups=deviceplugin.intel.com,resources=sgxdeviceplugins,verbs=get;list;watch;create;update;patch;delete
-// +kubebuilder:rbac:groups=deviceplugin.intel.com,resources=sgxdeviceplugins/status,verbs=get;update;patch
-// +kubebuilder:rbac:groups=deviceplugin.intel.com,resources=sgxdeviceplugins/finalizers,verbs=update
+// +kubebuilder:rbac:groups=deviceplugin.intel.com,resources=tdxdeviceplugins,verbs=get;list;watch;create;update;patch;delete
+// +kubebuilder:rbac:groups=deviceplugin.intel.com,resources=tdxdeviceplugins/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups=deviceplugin.intel.com,resources=tdxdeviceplugins/finalizers,verbs=update
 
 // SetupReconciler creates a new reconciler for TdxDevicePlugin objects.
 func SetupReconciler(mgr ctrl.Manager, namespace string, withWebhook bool) error {
@@ -104,7 +104,7 @@ func setInitContainer(spec *v1.PodSpec, imageName string) {
 		{
 			Image:           imageName,
 			ImagePullPolicy: "IfNotPresent",
-			Name:            "intel-sgx-initcontainer",
+			Name:            "intel-tdx-initcontainer",
 			SecurityContext: &v1.SecurityContext{
 				SELinuxOptions: &v1.SELinuxOptions{
 					Type: "container_device_plugin_init_t",

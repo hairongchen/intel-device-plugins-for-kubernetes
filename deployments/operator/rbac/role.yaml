@@ -233,6 +233,32 @@ rules:
   - patch
   - update
 - apiGroups:
+  - deviceplugin.intel.com
+  resources:
+  - tdxdeviceplugins
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - deviceplugin.intel.com
+  resources:
+  - tdxdeviceplugins/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - deviceplugin.intel.com
+  resources:
+  - tdxdeviceplugins/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
   - fpga.intel.com
   resources:
   - acceleratorfunctions

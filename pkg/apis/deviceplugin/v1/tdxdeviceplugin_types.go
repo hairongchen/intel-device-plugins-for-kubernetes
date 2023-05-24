@@ -21,20 +21,20 @@ import (
 
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-// SgxDevicePluginSpec defines the desired state of SgxDevicePlugin.
+// TdxDevicePluginSpec defines the desired state of TdxDevicePlugin.
 type TdxDevicePluginSpec struct {
 	// Important: Run "make generate" to regenerate code after modifying this file
 
 	// NodeSelector provides a simple way to constrain device plugin pods to nodes with particular labels.
 	NodeSelector map[string]string `json:"nodeSelector,omitempty"`
 
-	// Image is a container image with SGX device plugin executable.
+	// Image is a container image with TDX device plugin executable.
 	Image string `json:"image,omitempty"`
 
-	// InitImage is a container image with tools (e.g., SGX NFD source hook) installed on each node.
+	// InitImage is a container image with tools (e.g., TDX NFD source hook) installed on each node.
 	InitImage string `json:"initImage,omitempty"`
 
-	// EnclaveLimit is a number of containers that can share the same SGX enclave device.
+	// EnclaveLimit is a number of containers that can share the same TDX enclave device.
 	// +kubebuilder:validation:Minimum=1
 	TdxLimit int `json:"tdxLimit,omitempty"`
 
@@ -43,7 +43,7 @@ type TdxDevicePluginSpec struct {
 	LogLevel int `json:"logLevel,omitempty"`
 }
 
-// SgxDevicePluginStatus defines the observed state of SgxDevicePlugin.
+// TdxDevicePluginStatus defines the observed state of TdxDevicePlugin.
 type TdxDevicePluginStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make generate" to regenerate code after modifying this file
@@ -66,7 +66,7 @@ type TdxDevicePluginStatus struct {
 }
 
 // +kubebuilder:object:root=true
-// +kubebuilder:resource:path=sgxdeviceplugins,scope=Cluster
+// +kubebuilder:resource:path=tdxdeviceplugins,scope=Cluster
 // +kubebuilder:subresource:status
 // +kubebuilder:printcolumn:name="Desired",type=integer,JSONPath=`.status.desiredNumberScheduled`
 // +kubebuilder:printcolumn:name="Ready",type=integer,JSONPath=`.status.numberReady`
@@ -74,8 +74,8 @@ type TdxDevicePluginStatus struct {
 // +kubebuilder:printcolumn:name="Age",type=date,JSONPath=`.metadata.creationTimestamp`
 // +operator-sdk:csv:customresourcedefinitions:displayName="Intel Software Guard Extensions Device Plugin"
 
-// SgxDevicePlugin is the Schema for the sgxdeviceplugins API. It represents
-// the SGX device plugin responsible for advertising SGX device nodes to
+// TdxDevicePlugin is the Schema for the tdxdeviceplugins API. It represents
+// the TDX device plugin responsible for advertising TDX device nodes to
 // the kubelet.
 type TdxDevicePlugin struct {
 	metav1.TypeMeta   `json:",inline"`
@@ -87,7 +87,7 @@ type TdxDevicePlugin struct {
 
 // +kubebuilder:object:root=true
 
-// SgxDevicePluginList contains a list of SgxDevicePlugin.
+// TdxDevicePluginList contains a list of TdxDevicePlugin.
 type TdxDevicePluginList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
