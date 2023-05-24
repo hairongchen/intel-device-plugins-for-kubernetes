@@ -23,7 +23,7 @@ spec:
         control-plane: controller-manager
     spec:
       containers:
-      - image: docker.io/intel/intel-deviceplugin-operator:devel
+      - image: docker.io/library/deviceplugin-operator:v1
         imagePullPolicy: IfNotPresent
         name: manager
         livenessProbe:
