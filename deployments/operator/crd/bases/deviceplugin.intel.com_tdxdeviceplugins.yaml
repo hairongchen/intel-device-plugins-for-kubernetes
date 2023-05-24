@@ -67,7 +67,7 @@ spec:
                   plugin pods to nodes with particular labels.
                 type: object
               tdxLimit:
-                description: EnclaveLimit is a number of containers that can share
+                description: TdxLimit is a number of containers that can share
                   the same TDX enclave device.
                 minimum: 1
                 type: integer

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: intel-tdx-plugin
+  namespace: kube-system
+  labels:
+    app: intel-tdx-plugin
+spec:
+  selector:
+    matchLabels:
+      app: intel-tdx-plugin
+  template:
+    metadata:
+      labels:
+        app: intel-tdx-plugin
+    spec:
+      automountServiceAccountToken: false
+      containers:
+      - name: intel-tdx-plugin
+        image: docker.io/intel/intel-tdx-plugin:v1
+        securityContext:
+          seLinuxOptions:
+            type: "container_device_plugin_t"
+          readOnlyRootFilesystem: true
+          allowPrivilegeEscalation: false
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: kubeletsockets
+          mountPath: /var/lib/kubelet/device-plugins
+        - name: tdx-guest
+          mountPath: /dev/tdx-guest
+          readOnly: true
+      volumes:
+      - name: kubeletsockets
+        hostPath:
+          path: /var/lib/kubelet/device-plugins
+      - name: tdx-guest
+        hostPath:
+          path: /dev/tdx-guest
+          type: CharDevice
+      nodeSelector:
+        kubernetes.io/arch: amd64

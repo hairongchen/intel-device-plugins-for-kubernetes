@@ -34,7 +34,7 @@ type TdxDevicePluginSpec struct {
 	// InitImage is a container image with tools (e.g., TDX NFD source hook) installed on each node.
 	InitImage string `json:"initImage,omitempty"`
 
-	// EnclaveLimit is a number of containers that can share the same TDX enclave device.
+	// TdxLimit is a number of containers that can share the same TDX enclave device.
 	// +kubebuilder:validation:Minimum=1
 	TdxLimit int `json:"tdxLimit,omitempty"`
 

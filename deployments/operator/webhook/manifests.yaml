@@ -151,6 +151,27 @@ webhooks:
     service:
       name: webhook-service
       namespace: system
+      path: /mutate-deviceplugin-intel-com-v1-tdxdeviceplugin
+  failurePolicy: Fail
+  name: mtdxdeviceplugin.kb.io
+  reinvocationPolicy: IfNeeded
+  rules:
+  - apiGroups:
+    - deviceplugin.intel.com
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - tdxdeviceplugins
+  sideEffects: None
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: webhook-service
+      namespace: system
       path: /pods
   failurePolicy: Ignore
   name: fpga.mutator.webhooks.intel.com
@@ -331,4 +352,24 @@ webhooks:
     - UPDATE
     resources:
     - sgxdeviceplugins
+  sideEffects: None
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: webhook-service
+      namespace: system
+      path: /validate-deviceplugin-intel-com-v1-tdxdeviceplugin
+  failurePolicy: Fail
+  name: vtdxdeviceplugin.kb.io
+  rules:
+  - apiGroups:
+    - deviceplugin.intel.com
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - tdxdeviceplugins
   sideEffects: None

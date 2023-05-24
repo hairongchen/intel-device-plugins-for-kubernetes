@@ -39,6 +39,7 @@ import (
 	"github.com/intel/intel-device-plugins-for-kubernetes/pkg/controllers/iaa"
 	"github.com/intel/intel-device-plugins-for-kubernetes/pkg/controllers/qat"
 	"github.com/intel/intel-device-plugins-for-kubernetes/pkg/controllers/sgx"
+	"github.com/intel/intel-device-plugins-for-kubernetes/pkg/controllers/tdx"
 	"github.com/intel/intel-device-plugins-for-kubernetes/pkg/fpgacontroller"
 	"github.com/intel/intel-device-plugins-for-kubernetes/pkg/fpgacontroller/patcher"
 	sgxwebhook "github.com/intel/intel-device-plugins-for-kubernetes/pkg/webhooks/sgx"
@@ -64,7 +65,7 @@ type devicePluginControllerAndWebhook map[string](func(ctrl.Manager, string, boo
 
 type flagList []string
 
-var supportedDevices = flagList{"dsa", "dlb", "fpga", "gpu", "iaa", "qat", "sgx"}
+var supportedDevices = flagList{"dsa", "dlb", "fpga", "gpu", "iaa", "qat", "sgx", "tdx"}
 var devices flagList
 
 func (flag *flagList) String() string {
@@ -129,6 +130,7 @@ func main() {
 		"iaa":  iaa.SetupReconciler,
 		"qat":  qat.SetupReconciler,
 		"sgx":  sgx.SetupReconciler,
+		"tdx":  tdx.SetupReconciler,
 	}
 
 	webHook := &webhook.Server{
