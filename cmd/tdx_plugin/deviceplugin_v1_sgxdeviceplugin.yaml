@@ -1,0 +1,8 @@
+apiVersion: deviceplugin.intel.com/v1
+kind: TdxDevicePlugin
+metadata:
+  name: tdxdeviceplugin-sample
+spec:
+  image: sgx-dp:v1
+  tdxLimit: 110
+  logLevel: 4

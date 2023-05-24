@@ -71,6 +71,12 @@ func SGXPluginDaemonSet() *apps.DaemonSet {
 	return getDaemonset(contentSGX).DeepCopy()
 }
 
+var contentTDX []byte
+
+func TDXPluginDaemonSet() *apps.DaemonSet {
+	return getDaemonset(contentTDX).DeepCopy()
+}
+
 // getDaemonset unmarshalls yaml content into a DaemonSet object.
 func getDaemonset(content []byte) *apps.DaemonSet {
 	var result apps.DaemonSet
