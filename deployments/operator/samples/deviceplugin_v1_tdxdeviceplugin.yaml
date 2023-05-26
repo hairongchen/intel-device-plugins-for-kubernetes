@@ -1,0 +1,10 @@
+apiVersion: deviceplugin.intel.com/v1
+kind: TdxDevicePlugin
+metadata:
+  name: tdxdeviceplugin-sample
+spec:
+  image: docker.io/intel/intel-tdx-plugin:v1
+  tdxLimit: 10
+  logLevel: 4
+  nodeSelector:
+    kubernetes.io/arch: amd64
