@@ -39,4 +39,4 @@ spec:
           path: /dev/tdx-guest
           type: CharDevice
       nodeSelector:
-        kubernetes.io/arch: amd64
+        intel.feature.node.kubernetes.io/tdx: "true"

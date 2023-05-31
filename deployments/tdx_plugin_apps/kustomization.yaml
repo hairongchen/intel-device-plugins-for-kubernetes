@@ -3,4 +3,4 @@ kind: Kustomization
 generatorOptions:
   disableNameSuffixHash: true
 resources:
-  - intel-tdx-plugin.yaml
+  - inteltdx-pod-sample.yaml
