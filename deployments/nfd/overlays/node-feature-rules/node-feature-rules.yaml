@@ -103,3 +103,11 @@ spec:
         - feature: kernel.config
           matchExpressions:
             X86_SGX: {op: Exists}
+
+    - name: "intel.tdx"
+      labels:
+        "intel.feature.node.kubernetes.io/tdx": "true"
+      matchFeatures:
+        - feature: cpu.security
+          matchExpressions:
+            tdx.enabled: {op: Exists}
